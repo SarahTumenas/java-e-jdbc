@@ -8,9 +8,9 @@ public class TestaConexão {
     public static void main(String[] args) throws SQLException {
 
         ConnectionFactory connectionFactory = new ConnectionFactory();
-        Connection con = connectionFactory.recuperarConexao();
-        System.out.println("Fechando Conexão!");
-        con.close();
+        try (Connection con = connectionFactory.recuperarConexao()) {
+            System.out.println("Fechando Conexão!");
+        }
     }
 }
 
