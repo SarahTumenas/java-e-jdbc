@@ -10,11 +10,26 @@ public class TestaInsecaoComParametro {
         Connection con = connectionFactory.recuperarConexao();
         con.setAutoCommit(false);
 
-        PreparedStatement stm = con.prepareStatement("INSERT INTO PRODUTO (NOME, DESCRICAO) VALUES (?, ?)"
-                , Statement.RETURN_GENERATED_KEYS);
+        try {
+            PreparedStatement stm = con.prepareStatement("INSERT INTO PRODUTO (NOME, DESCRICAO) VALUES (?, ?)"
+                    , Statement.RETURN_GENERATED_KEYS);
 
-        adicionarVariavel("apple watch ", "smart watch", stm);
-        adicionarVariavel("Alexa ", "Smart Speaker ", stm);
+            adicionarVariavel("apple watch ", "smart watch", stm);
+            adicionarVariavel("Alexa ", "Smart Speaker ", stm);
+
+            con.commit();
+            stm.close();
+
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            System.out.println("Rollback executado");
+            con.rollback();
+
+        }
+        con.close();
+
     }
 
     private static void adicionarVariavel(String nome, String descricao, PreparedStatement stm) throws SQLException {

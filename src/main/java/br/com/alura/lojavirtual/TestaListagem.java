@@ -21,6 +21,8 @@ public class TestaListagem  {
         }
         rst.close();
 
+        stm.close();
+        con.close();
     }
 
 

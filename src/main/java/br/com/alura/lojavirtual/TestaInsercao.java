@@ -26,5 +26,8 @@ public class TestaInsercao {
             System.out.println("Novo ID: " + id);
         }
         rst.close();
+
+        stm.close();
+        con.close();
     }
 }
