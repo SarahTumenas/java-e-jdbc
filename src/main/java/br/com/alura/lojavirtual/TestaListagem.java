@@ -19,7 +19,7 @@ public class TestaListagem  {
             System.out.println(rst.getInt("ID") + " - " + rst.getString("NOME")
                     + " - " + rst.getString("DESCRICAO"));
         }
-        con.close();
+        rst.close();
 
     }
 

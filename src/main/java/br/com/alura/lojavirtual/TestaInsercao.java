@@ -25,6 +25,6 @@ public class TestaInsercao {
             Integer id = rst.getInt(1);
             System.out.println("Novo ID: " + id);
         }
-        con.close();
+        rst.close();
     }
 }

@@ -5,16 +5,26 @@ import java.sql.*;
 public class TestaInsecaoComParametro {
     public static void main(String[] args) throws SQLException {
 
-        String nome = "Mouse";
-        String descricao = "Mouse sem fio";
+
         ConnectionFactory connectionFactory = new ConnectionFactory();
         Connection con = connectionFactory.recuperarConexao();
+        con.setAutoCommit(false);
 
         PreparedStatement stm = con.prepareStatement("INSERT INTO PRODUTO (NOME, DESCRICAO) VALUES (?, ?)"
                 , Statement.RETURN_GENERATED_KEYS);
 
+        adicionarVariavel("apple watch ", "smart watch", stm);
+        adicionarVariavel("Alexa ", "Smart Speaker ", stm);
+    }
+
+    private static void adicionarVariavel(String nome, String descricao, PreparedStatement stm) throws SQLException {
+
         stm.setString(1, nome);
         stm.setString(2, descricao);
+
+        /*if(nome.equals("apple watch")){
+           throw new SQLException("não foi possível adicionar o produto");
+        }*/
 
         stm.execute();
 
@@ -25,5 +35,6 @@ public class TestaInsecaoComParametro {
             System.out.println("Novo ID: " + id);
         }
 
+        rst.close();
     }
 }
