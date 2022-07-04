@@ -1,5 +1,7 @@
 package br.com.alura.lojavirtual;
 
+import br.com.alura.lojavirtual.factory.ConnectionFactory;
+
 import java.sql.SQLException;
 
 public class TestaPoolConexoes {

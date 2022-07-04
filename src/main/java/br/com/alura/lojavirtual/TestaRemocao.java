@@ -1,5 +1,7 @@
 package br.com.alura.lojavirtual;
 
+import br.com.alura.lojavirtual.factory.ConnectionFactory;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

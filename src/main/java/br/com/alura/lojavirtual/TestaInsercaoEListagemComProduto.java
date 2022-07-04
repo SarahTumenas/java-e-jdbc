@@ -1,6 +1,7 @@
 package br.com.alura.lojavirtual;
 
 import br.com.alura.lojavirtual.dao.ProdutoDAO;
+import br.com.alura.lojavirtual.factory.ConnectionFactory;
 import br.com.alura.lojavirtual.modelo.Produto;
 
 import java.sql.*;
