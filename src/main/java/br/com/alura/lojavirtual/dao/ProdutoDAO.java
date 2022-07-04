@@ -3,6 +3,8 @@ package br.com.alura.lojavirtual.dao;
 import br.com.alura.lojavirtual.modelo.Produto;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProdutoDAO {
 
@@ -29,4 +31,26 @@ public class ProdutoDAO {
         }
     }
 
+    public List <Produto> listar() throws SQLException {
+
+        List <Produto> produtos = new ArrayList<>();
+
+        String sql = "SELECT ID, NOME, DESCRICAO FROM PRODUTO";
+        try (PreparedStatement psmt = connection.prepareStatement(sql)) {
+            psmt.execute();
+            try (ResultSet rst= psmt.getResultSet()) {
+                while (rst.next()) {
+                    Produto produto =
+                            new Produto(rst.getInt(1), rst.getString(2), rst.getString(3));
+                    produtos.add(produto);
+
+                }
+
+                }
+            }
+        return produtos;
+    }
 }
+
+
+
