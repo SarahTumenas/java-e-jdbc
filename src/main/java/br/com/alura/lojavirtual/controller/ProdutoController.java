@@ -1,33 +1,39 @@
 package br.com.alura.lojavirtual.controller;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 
+import br.com.alura.lojavirtual.dao.ProdutoDAO;
+import br.com.alura.lojavirtual.factory.ConnectionFactory;
 import br.com.alura.lojavirtual.modelo.Produto;
 
 public class ProdutoController {
 
+	private ProdutoDAO produtoDAO;
+
+	public ProdutoController() {
+		Connection connection = new ConnectionFactory().recuperarConexao();
+		this.produtoDAO = new ProdutoDAO(connection);
+	}
+
 	public void deletar(Integer id) {
 
-		System.out.println("Deletando produto");
+		this.produtoDAO.deletar(id);
 	}
 
 	public void salvar(Produto produto) {
 
-		System.out.println("Salvando produto");
+		this.produtoDAO.salvar(produto);
 	}
 
 	public List<Produto> listar() {
-		List<Produto> produtos = 
-				new ArrayList<>();
-		produtos.add(new Produto("Nome do Produto de teste"
-				, "Descri��o do produto de teste"));
-		return produtos;
+		return this.produtoDAO.listar();
 	}
 
 	public void alterar(String nome, String descricao, Integer id) {
 
-		System.out.println("Alterando produto");
+		this.produtoDAO.alterar(nome, descricao, id);
 	}
 }
