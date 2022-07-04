@@ -1,12 +1,28 @@
 package br.com.alura.lojavirtual;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.SQLException;
 
 public class ConnectionFactory {
-    public static Connection recuperarConexao() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/loja_virtual", "root", "root");
+
+    public DataSource dataSource;
+
+    public ConnectionFactory (){
+
+        ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
+        comboPooledDataSource.setJdbcUrl("jdbc:mysql://localhost/loja_virtual?useTimezone=true&serverTimezone=UTC");
+        comboPooledDataSource.setUser("root");
+        comboPooledDataSource.setPassword("root");
+
+        this.dataSource = comboPooledDataSource;
+
+    }
+    public Connection recuperarConexao() throws SQLException {
+        return this.dataSource.getConnection();
     }
 }
 
