@@ -33,4 +33,16 @@ public class Produto {
     public String toString() {
         return String.format("Oproduto é: %d, %s, %s",this.id, this.nome, this.descricao);
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setCategoriaId(Integer id) {
+        this.id = id;
+    }
+
+    public int getCategoriaId() {
+        return id;
+    }
 }
